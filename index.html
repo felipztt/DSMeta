@@ -1,124 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DSMeta</title>
-
+    <title>Agenda Clínica Integrada</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <header>
         <div class="dsmeta-logo-container">
-            <img src="logo.svg" alt="DSMeta">
-            <h1>DSMeta</h1>
-            <p>Desenvolvido por
-                <a href="https://www.instagram.com/felipztt/">@felipztt</a>
-            </p>
+            <p class="eyebrow">CRM de agendamentos</p>
+            <h1>Agenda Clínica Integrada</h1>
+            <p>Centralize cadastros de pacientes, multiusuários e notificações rápidas via WhatsApp.</p>
+            <div class="hero-meta">
+                <span>Contas de usuários ilimitadas</span>
+                <span>Níveis e permissões</span>
+                <span>Agenda semanal inteligente</span>
+            </div>
         </div>
     </header>
 
     <main>
-        <section id="sales">
-            <div class="dsmeta-container">
-                <div class="dsmeta-card">
-                    <h2 class="dsmeta-sales-title">Vendas</h2>
+        <section class="dsmeta-container">
+            <div class="dsmeta-card">
+                <div class="card-header">
                     <div>
-                        <div class="dsmeta-form-control-container">
-                            <input class="dsmeta-form-control" type="text">
-                        </div>
-                        <div class="dsmeta-form-control-container">
-                            <input class="dsmeta-form-control" type="text">
-                        </div>
+                        <p class="eyebrow">Ficha completa</p>
+                        <h2 class="card-title">Novo agendamento</h2>
                     </div>
+                    <button class="accent-btn" type="button" id="criar-agendamento">Salvar ficha</button>
+                </div>
 
-                    <div>
-                        <table class="dsmeta-sales-table">
-                            <thead>
-                                <tr>
-                                    <th class="show992">ID</th>
-                                    <th class="show576">Data</th>
-                                    <th>Vendedor</th>
-                                    <th class="show992">Visitas</th>
-                                    <th class="show992">Vendas</th>
-                                    <th>Total</th>
-                                    <th>Notificar</th>
+                <form class="form-grid" id="form-agendamento">
+                    <fieldset>
+                        <legend>Dados pessoais do paciente/cliente</legend>
+                        <label>Nome completo
+                            <input class="dsmeta-form-control" type="text" placeholder="Nome e sobrenome" required>
+                        </label>
+                        <label>CPF
+                            <input class="dsmeta-form-control" type="text" placeholder="000.000.000-00">
+                        </label>
+                        <label>RG
+                            <input class="dsmeta-form-control" type="text" placeholder="00.000.000-0">
+                        </label>
+                        <label>Data de nascimento
+                            <input class="dsmeta-form-control" type="date">
+                        </label>
+                        <label>E-mail
+                            <input class="dsmeta-form-control" type="email" placeholder="nome@email.com">
+                        </label>
+                        <label>Telefone/WhatsApp
+                            <input class="dsmeta-form-control" type="tel" id="telefone-paciente" placeholder="(00) 00000-0000">
+                        </label>
+                        <label>Endereço completo
+                            <input class="dsmeta-form-control" type="text" placeholder="Rua, nº, bairro, cidade">
+                        </label>
+                        <label>Observações clínicas
+                            <textarea class="dsmeta-form-control" rows="3" placeholder="Alergias, preferências e histórico"></textarea>
+                        </label>
+                    </fieldset>
 
+                    <fieldset>
+                        <legend>Dados essenciais do agendamento</legend>
+                        <label>Profissional responsável
+                            <select class="dsmeta-form-control">
+                                <option>Selecione</option>
+                                <option>Dra. Ana Paula - Fisioterapia</option>
+                                <option>Dr. João Henrique - Odontologia</option>
+                                <option>Dra. Marina Costa - Psicologia</option>
+                            </select>
+                        </label>
+                        <label>Serviço / Procedimento
+                            <input class="dsmeta-form-control" type="text" placeholder="Ex.: Avaliação inicial">
+                        </label>
+                        <label>Dia da semana
+                            <select class="dsmeta-form-control">
+                                <option>Segunda-feira</option>
+                                <option>Terça-feira</option>
+                                <option>Quarta-feira</option>
+                                <option>Quinta-feira</option>
+                                <option>Sexta-feira</option>
+                                <option>Sábado</option>
+                            </select>
+                        </label>
+                        <label>Data
+                            <input class="dsmeta-form-control" type="date">
+                        </label>
+                        <label>Horário
+                            <input class="dsmeta-form-control" type="time">
+                        </label>
+                        <label>Forma de pagamento
+                            <select class="dsmeta-form-control">
+                                <option>Convênio</option>
+                                <option>Particular</option>
+                                <option>Cartão crédito</option>
+                                <option>Cartão débito</option>
+                                <option>PIX</option>
+                            </select>
+                        </label>
+                        <label>Status do agendamento
+                            <select class="dsmeta-form-control">
+                                <option>Confirmado</option>
+                                <option>Pendente</option>
+                                <option>Reagendar</option>
+                                <option>Cancelado</option>
+                            </select>
+                        </label>
+                        <label>Mensagem personalizada
+                            <textarea class="dsmeta-form-control" rows="3" id="mensagem-whatsapp"
+                                placeholder="Olá, confirmando seu atendimento..."></textarea>
+                        </label>
+                        <div class="whatsapp-action">
+                            <button class="accent-btn secondary" type="button" id="whatsapp-btn">Chamar no WhatsApp</button>
+                            <small>Abre o WhatsApp Web com a mensagem pronta para o paciente.</small>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
 
-                                </tr>
+        <section class="dsmeta-container grid-two">
+            <div class="dsmeta-card">
+                <p class="eyebrow">Agenda semanal</p>
+                <h2 class="card-title">Agendamentos ativos</h2>
+                <table class="dsmeta-sales-table">
+                    <thead>
+                        <tr>
+                            <th>Dia</th>
+                            <th>Horário</th>
+                            <th>Paciente</th>
+                            <th>Procedimento</th>
+                            <th>Profissional</th>
+                            <th>Notificar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segunda</td>
+                            <td>09:00</td>
+                            <td>Laura Ribeiro</td>
+                            <td>Fisioterapia</td>
+                            <td>Dra. Ana Paula</td>
+                            <td>
+                                <button class="dsmeta-red-btn whatsapp-inline" data-phone="5511999999999"
+                                    data-message="Olá Laura, confirmando sua sessão de fisioterapia às 09h.">
+                                    <img src="notification-icon.svg" alt="WhatsApp">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quarta</td>
+                            <td>14:30</td>
+                            <td>Paulo Lima</td>
+                            <td>Clareamento</td>
+                            <td>Dr. João Henrique</td>
+                            <td>
+                                <button class="dsmeta-red-btn whatsapp-inline" data-phone="554799998888"
+                                    data-message="Oi Paulo! Lembrando do seu clareamento às 14h30.">
+                                    <img src="notification-icon.svg" alt="WhatsApp">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sexta</td>
+                            <td>18:00</td>
+                            <td>Marina Souza</td>
+                            <td>Psicoterapia</td>
+                            <td>Dra. Marina Costa</td>
+                            <td>
+                                <button class="dsmeta-red-btn whatsapp-inline" data-phone="553199112233"
+                                    data-message="Olá Marina, confirmando seu atendimento às 18h.">
+                                    <img src="notification-icon.svg" alt="WhatsApp">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
+            <div class="dsmeta-card">
+                <p class="eyebrow">Multiusuários e níveis</p>
+                <h2 class="card-title">Equipe conectada</h2>
+                <table class="dsmeta-sales-table compact">
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Nível</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Carolina Batista</td>
+                            <td>Administrador</td>
+                            <td>carol@clinica.com</td>
+                            <td>Ativo</td>
+                        </tr>
+                        <tr>
+                            <td>Mateus Prado</td>
+                            <td>Coordenador</td>
+                            <td>mateus@clinica.com</td>
+                            <td>Ativo</td>
+                        </tr>
+                        <tr>
+                            <td>Sofia Nunes</td>
+                            <td>Recepção</td>
+                            <td>sofia@clinica.com</td>
+                            <td>Férias</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="accent-btn tertiary" type="button">Cadastrar novo usuário</button>
+            </div>
+        </section>
 
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="show992">#341</td>
-                                    <td class="show576">08/07/2022</td>
-                                    <td>Anakin</td>
-                                    <td class="show992">15</td>
-                                    <td class="show992">11</td>
-                                    <td>R$ 55300.00</td>
-                                    <td>
-                                        <div class="dsmeta-red-btn-container">
-                                            <div class="dsmeta-red-btn">
-                                                <img src="notification-icon.svg" alt="Notificar">
-                                            </div>
-                                        </div>
-
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td class="show992">#341</td>
-                                    <td class="show576">08/07/2022</td>
-                                    <td>Anakin</td>
-                                    <td class="show992">15</td>
-                                    <td class="show992">11</td>
-                                    <td>R$ 55300.00</td>
-                                    <td>
-                                        <div class="dsmeta-red-btn-container">
-                                            <div class="dsmeta-red-btn">
-                                                <img src="notification-icon.svg" alt="Notificar">
-                                            </div>
-                                        </div>
-
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td class="show992">#341</td>
-                                    <td class="show576">08/07/2022</td>
-                                    <td>Anakin</td>
-                                    <td class="show992">15</td>
-                                    <td class="show992">11</td>
-                                    <td>R$ 55300.00</td>
-                                    <td>
-                                        <div class="dsmeta-red-btn-container">
-                                            <div class="dsmeta-red-btn">
-                                                <img src="notification-icon.svg" alt="Notificar">
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
+        <section class="dsmeta-container">
+            <div class="dsmeta-card crm-panel">
+                <div>
+                    <p class="eyebrow">CRM Clínico</p>
+                    <h2 class="card-title">Acompanhamento rápido</h2>
+                    <p class="crm-description">Visualize o funil de relacionamento, oportunidades e compromissos em um só lugar.</p>
+                </div>
+                <div class="crm-columns">
+                    <div class="crm-column">
+                        <h3>Novos contatos</h3>
+                        <ul>
+                            <li>4 pacientes aguardando confirmação</li>
+                            <li>2 solicitações via site</li>
+                        </ul>
                     </div>
-
-
-
-
+                    <div class="crm-column">
+                        <h3>Em acompanhamento</h3>
+                        <ul>
+                            <li>6 planos de tratamento em andamento</li>
+                            <li>3 retornos nesta semana</li>
+                        </ul>
+                    </div>
+                    <div class="crm-column">
+                        <h3>Concluídos</h3>
+                        <ul>
+                            <li>18 altas no mês</li>
+                            <li>98% satisfação</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <script>
+        function abrirWhatsapp(telefone, mensagem) {
+            if (!telefone) return;
+            const numero = telefone.replace(/\D/g, '');
+            const texto = encodeURIComponent(mensagem || 'Olá, tudo bem?');
+            const link = `https://wa.me/${numero}?text=${texto}`;
+            window.open(link, '_blank');
+        }
 
+        document.getElementById('whatsapp-btn').addEventListener('click', () => {
+            const telefone = document.getElementById('telefone-paciente').value;
+            const mensagem = document.getElementById('mensagem-whatsapp').value;
+            abrirWhatsapp(telefone, mensagem);
+        });
+
+        document.querySelectorAll('.whatsapp-inline').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                abrirWhatsapp(btn.dataset.phone, btn.dataset.message);
+            });
+        });
+    </script>
 </body>
 
 </html>
